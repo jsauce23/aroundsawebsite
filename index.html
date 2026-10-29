@@ -986,6 +986,24 @@
   .area-links strong{ display:block; font-family:'Inter',sans-serif; font-size:0.72rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--rust-soft); margin-bottom:4px; }
   .area-links a{ text-decoration:underline; text-underline-offset:3px; text-decoration-color:rgba(255,255,255,0.35); }
   .area-links a:hover{ color:var(--rust-soft); }
+/* service areas dropdown */
+.dropdown{position:relative;}
+.dd-trigger{display:inline-flex;align-items:center;gap:6px;}
+.dd-trigger svg{transition:transform .2s ease;}
+.dropdown:hover .dd-trigger svg,.dropdown:focus-within .dd-trigger svg{transform:rotate(180deg);}
+.dd-menu{position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(6px);padding-top:16px;opacity:0;visibility:hidden;transition:opacity .18s ease,transform .18s ease,visibility .18s;z-index:60;}
+.dropdown:hover .dd-menu,.dropdown:focus-within .dd-menu{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0);}
+.dd-box{min-width:230px;background:#fff;border:1px solid rgba(27,52,72,0.12);border-top:3px solid var(--rust);border-radius:10px;padding:8px;box-shadow:0 24px 44px -18px rgba(16,31,44,.45);display:flex;flex-direction:column;}
+.dd-box a{padding:9px 14px;border-radius:6px;font-size:.88rem;font-weight:500;color:var(--navy);white-space:nowrap;}
+.dd-box a::after{display:none !important;}
+.dd-box a:hover{background:var(--cream-2);color:var(--rust);}
+.dd-box .dd-all{font-weight:700;border-bottom:1px solid rgba(27,52,72,0.1);border-radius:6px 6px 0 0;margin-bottom:4px;}
+.mob-areas{border-bottom:1px solid var(--line-light);}
+.mob-areas summary{font-family:'Inter',sans-serif;font-weight:500;font-size:1rem;color:var(--navy);padding:14px 0;cursor:pointer;list-style:none;display:flex;justify-content:space-between;}
+.mob-areas summary::-webkit-details-marker{display:none;}
+.mob-areas summary::after{content:'+';color:var(--rust);font-size:1.3rem;line-height:1;}
+.mob-areas[open] summary::after{content:'\2212';}
+.mob-areas a{display:block;padding:10px 0 10px 16px;border-bottom:0;font-size:.95rem;color:var(--navy);}
 </style>
 </head>
 <body>
@@ -1004,7 +1022,7 @@
       <a href="#services">Services</a>
       <a href="#clients">Who We Work With</a>
       <a href="#team">Team</a>
-      <a href="/areas/">Service Areas</a>
+      <div class="dropdown"><a class="dd-trigger" href="/areas/" aria-haspopup="true">Service Areas<svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a><div class="dd-menu"><div class="dd-box"><a class="dd-all" href="/areas/">All service areas</a><a href="/areas/alamo-heights/">Alamo Heights</a><a href="/areas/stone-oak/">Stone Oak</a><a href="/areas/boerne/">Boerne</a><a href="/areas/new-braunfels/">New Braunfels</a><a href="/areas/schertz/">Schertz</a><a href="/areas/helotes/">Helotes</a><a href="/areas/cibolo/">Cibolo</a><a href="/areas/leon-valley/">Leon Valley</a><a href="/areas/live-oak/">Live Oak</a><a href="/areas/converse/">Converse</a></div></div></div>
     </nav>
     <a class="btn solid" href="#contact">Start a Conversation</a>
     <button class="menuToggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobilePanel">
@@ -1016,8 +1034,7 @@
     <a href="#services">Services</a>
     <a href="#clients">Who We Work With</a>
     <a href="#team">Team</a>
-    <a href="#rooted">San Antonio</a>
-      <a href="/areas/">Service Areas</a>
+    <details class="mob-areas"><summary>Service Areas</summary><a href="/areas/">All service areas</a><a href="/areas/alamo-heights/">Alamo Heights</a><a href="/areas/stone-oak/">Stone Oak</a><a href="/areas/boerne/">Boerne</a><a href="/areas/new-braunfels/">New Braunfels</a><a href="/areas/schertz/">Schertz</a><a href="/areas/helotes/">Helotes</a><a href="/areas/cibolo/">Cibolo</a><a href="/areas/leon-valley/">Leon Valley</a><a href="/areas/live-oak/">Live Oak</a><a href="/areas/converse/">Converse</a></details>
     <a class="btn solid" href="#contact">Start a Conversation</a>
   </nav>
 </header>
@@ -1587,7 +1604,6 @@
 
 <script>
 
-  if(track){ track.innerHTML += track.innerHTML; }
 
   // Scroll reveal animations
   (function initReveal(){
